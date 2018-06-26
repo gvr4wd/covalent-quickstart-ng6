@@ -1,0 +1,19 @@
+<mat-nav-list td-sidenav-content>
+    <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+        <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()">
+            <mat-icon>{{item.icon}}</mat-icon>
+            {{item.title}}</a>
+    </ng-template>
+</mat-nav-list>
+<mat-nav-list>
+    <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+        <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()">
+            <mat-icon>{{item.icon}}</mat-icon>
+            {{item.title}}</a>
+    </ng-template>
+</mat-nav-list>
+<mat-nav-list td-navigation-drawer-menu>
+    <a mat-list-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Sign out</a>
+</mat-nav-list>

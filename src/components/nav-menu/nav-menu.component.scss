@@ -1,0 +1,18 @@
+@import "../../theme";
+label {
+    padding-left: 5px;
+    padding-right: 5px;
+    a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        &:hover {
+            color: mat-color($accent);
+        }
+    }
+}
+
+.active-link {
+    color: mat-color($accent) !important;
+}

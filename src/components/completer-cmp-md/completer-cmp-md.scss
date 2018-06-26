@@ -1,0 +1,33 @@
+
+.completer-row {
+    display: inherit;
+}
+
+.completer-selected-row {
+    background-color: lightblue;
+    color: #ffffff;
+}
+
+.completer-row p {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.completer-dropdown-holder {
+    position: absolute;
+    background: whitesmoke;
+    //max-height: 300px;
+     z-index: 99999
+}
+
+.completer-input {
+    width: 100%;;
+}
+
+//:host /deep/ {
+//    z-index: 9999;
+//    .tick text {
+//        font-size: 24px;
+//    }
+//}

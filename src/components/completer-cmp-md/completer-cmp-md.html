@@ -1,0 +1,29 @@
+<div class="completer-holder" ctrCompleter>
+    <mat-form-field class="completer-input">
+        <input matInput ctrInput="clearSelected=clearSelected; overrideSuggested=overrideSuggested; fillHighlighted=fillHighlighted" [(ngModel)]="searchStr"
+            [attr.name]="inputName" [attr.maxlength]="maxChars" [tabindex]="fieldTabindex" [disabled]="disableInput" (blur)="onBlur()" [placeholder]="placeholder"
+            autocomplete="off" autocorrect="off" autocapitalize="off">
+    </mat-form-field>
+
+    <div class="completer-dropdown-holder"
+         *ctrList="dataService; minSearchLength: minSearchLength; pause: pause; autoMatch: autoMatch; let items = results; let searchActive = searching; let isInitialized = searchInitialized;">
+        <mat-list class="completer-dropdown" ctrDropdown *ngIf="isInitialized">
+            <mat-list-item *ngIf="searchActive && displaySearching" class="completer-searching">{{textSearching}}</mat-list-item>
+            <mat-list-item *ngIf="!searchActive && (!items || items.length === 0)" class="completer-no-results">{{textNoResults}}</mat-list-item>
+            <mat-list-item class="completer-row-wrapper" *ngFor="let item of items; let rowIndex=index">
+                <div class="completer-row" [ctrRow]="rowIndex" [dataItem]="item">
+                    <!--<span *ngIf="item.image || item.image === ''" class="completer-image-holder">-->
+                        <!--<img mat-list-avatar *ngIf="item.image != ''" src="{{item.image}}" class="completer-image" />-->
+                        <!--<span mat-list-avatar *ngIf="item.image === ''" class="completer-image-default"></span>-->
+                    <!--</span>-->
+                    <p mat-line>
+                        <completer-list-item class="completer-title" [text]="item.title" [matchClass]="matchClass" [searchStr]="searchStr" [type]="'title'"></completer-list-item>
+                        <completer-list-item *ngIf="item.description && item.description != ''" class="completer-description" [text]="item.description"
+                            [matchClass]="matchClass" [searchStr]="searchStr" [type]="'description'">
+                        </completer-list-item>
+                    </p>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

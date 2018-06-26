@@ -1,0 +1,36 @@
+<mat-card *ngIf="group && group.members.length === 0">
+  <td-message label="No Members found" sublabel="Please add members to this group!" color="warn"
+              icon="warning">
+  </td-message>
+</mat-card>
+
+<mat-list class="will-load">
+  <ng-template let-member let-last="last" ngFor [ngForOf]="group.members">
+    <mat-list-item>
+      <img mat-list-avatar [src]="member.profilePictureUrl" alt="Group Avatar">
+      <div class="mat-list-text">
+        <h4 class="mat-line" mat-line="">{{member.getName()}}</h4>
+        <p class="mat-line" mat-line="">
+          <span>Brunch? -- </span>
+          <span class="demo-secondary-text">Did you want to go on Sunday? I was thinking that might work.</span>
+        </p>
+      </div>
+      <span flex></span>
+      <span>
+                <button mat-icon-button [mat-menu-trigger-for]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu x-position="before" #menu="matMenu">
+                    <a routerLink="/users/{{member.id}}/view" mat-menu-item>Details</a>
+                    <button (click)="deleteMember(member)" mat-menu-item>Delete</button>
+                </mat-menu>
+            </span>
+    </mat-list-item>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </ng-template>
+</mat-list>
+
+
+<a mat-fab color="accent" class="mat-fab-position-bottom-right" (click)="addMember()">
+  <mat-icon>add</mat-icon>
+</a>

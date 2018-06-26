@@ -1,0 +1,25 @@
+<mat-card *ngIf="!group.owner">
+  <td-message label="No Group Owner found" sublabel="Please add owner to this group!" color="warn"
+              icon="warning">
+    <button td-message-actions mat-button (click)="addOwner('Add Owner')">ADD OWNER</button>
+  </td-message>
+</mat-card>
+
+<mat-list class="will-load" *ngIf="group.owner">
+  <mat-list-item>
+    <img mat-list-avatar [src]="group.owner.profilePictureUrl" alt="Group Avatar">
+    <div class="mat-list-text">
+      <h4 class="mat-line" mat-line="">{{group.owner.getName()}}</h4>
+      <p class="mat-line" mat-line="">
+        <span>Brunch? -- </span>
+        <span class="demo-secondary-text">Did you want to go on Sunday? I was thinking that might work.</span>
+      </p>
+    </div>
+    <span flex></span>
+    <span>
+      <a mat-fab color="accent" (click)="addOwner('Change Owner')">
+        <mat-icon style="color: white;">edit</mat-icon>
+      </a>
+    </span>
+  </mat-list-item>
+</mat-list>

@@ -1,0 +1,33 @@
+<div toolbar-buttons layout="row" layout-align="start center" flex>
+    <h3 mat-dialog-title="">{{title}}</h3>
+</div>
+
+<mat-dialog-content>
+
+
+    <form name="groupSearchForm">
+
+        <div layout="row" layout-margin>
+            <mat-form-field>
+                <mat-select placeholder="Group" [(value)]="selectedGroup">
+                    <mat-option *ngFor="let group of groups" [value]="group">
+                        {{ group.groupName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!--<div layout="row" layout-margin>-->
+            <!--<ng2-completer-md [dataService]="dataLocal" [minSearchLength]="3"-->
+                              <!--[maxChars]="40" [placeholder]="'Group - type to search'" [matchClass]="'match'"-->
+                              <!--(selected)="onGroupSelected($event)" name="user"-->
+            <!--flex>-->
+            <!--</ng2-completer-md>-->
+        <!--</div>-->
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <div flex></div>
+    <button mat-raised-button color="accent" (click)="addGroup()" [disabled]="!selectedGroup">Add</button>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

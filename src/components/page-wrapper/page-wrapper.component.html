@@ -1,0 +1,13 @@
+<td-layout #layout logo="assets:covalent" sidenavTitle="Quickstart" displayName="Firstname Lastname"
+           (logout)="logout()">
+    <mat-nav-list td-sidenav-content>
+        <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+            <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()">
+                <mat-icon>{{item.icon}}</mat-icon>
+                {{item.title}}</a>
+        </ng-template>
+    </mat-nav-list>
+    <ng-content></ng-content>
+
+</td-layout>
+

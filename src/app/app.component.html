@@ -1,0 +1,37 @@
+<app-login *ngIf="isLoggedIn() == false"></app-login>
+<td-layout #layout *ngIf="isLoggedIn()">
+  <td-navigation-drawer logo="assets:querygrid" sidenavTitle="Boss-O-Matic"
+                        name="{{user?.firstName}} {{user?.lastName}}"
+                        email="{{user?.email}}">
+    <mat-nav-list>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="mdNavList">
+        <a mat-list-item [routerLink]="[item.route]" (click)="layout.close()">
+          <mat-icon>{{item.icon}}</mat-icon>
+          {{item.title}}</a>
+      </ng-template>
+      <a mat-list-item href="/docs/" *appHasAuthority="'admin'">
+        <mat-icon>domain</mat-icon>
+        Boss-o-Matic API</a>
+    </mat-nav-list>
+    <mat-nav-list td-navigation-drawer-menu>
+      <a mat-list-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Sign out</a>
+    </mat-nav-list>
+  </td-navigation-drawer>
+  <td-layout-nav #navList navigationRoute="/">
+
+    <nav-menu td-toolbar-content layout="row" layout-align="center center" flex></nav-menu>
+
+    <router-outlet></router-outlet>
+
+    <td-layout-footer>
+      <div layout="row" layout-align="start center" layout-padding>
+        <span class="mat-caption">Copyright &copy; 2017 Boss-O-Matic. All rights reserved</span>
+        <span flex></span>
+        <a mat-button="" href="http://www.skogul.com">Skogul, Inc.</a>
+      </div>
+    </td-layout-footer>
+  </td-layout-nav>
+
+</td-layout>

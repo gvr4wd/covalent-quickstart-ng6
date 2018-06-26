@@ -1,0 +1,56 @@
+<button mat-icon-button td-menu-button tdLayoutToggle>
+  <mat-icon>menu</mat-icon>
+</button>
+
+<h3 class="logo">Boss-O-Matic</h3>
+<label><a routerLink="/home" routerLinkActive="active-link" id="home">HOME</a></label>
+<label><a routerLink="/work" routerLinkActive="active-link" id="work">WORK</a></label>
+<label><a routerLink="/cv" routerLinkActive="active-link" id="cv">CV</a></label>
+<label><a routerLink="/compensation" routerLinkActive="active-link" id="compensation">COMPENSATION</a></label>
+<span flex></span>
+
+<input matInput *ngIf="searchActivated" style="margin-right: 20px;" placeholder="Search" value="">
+
+<!--<a mat-button href="#" buttonDisableFix mat-icon-button (click)="searchActivated = !searchActivated">-->
+<!--<mat-icon>search</mat-icon>-->
+<!--</a>-->
+<td-search-box backIcon="arrow_forward" placeholder="Search here" [showUnderline]="true" [debounce]="500"
+               [alwaysVisible]="false" (searchDebounce)="searchInputTerm = $event"
+               (search)="search($event)" (clear)="searchInputTerm = ''">
+</td-search-box>
+
+<button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+  <td-notification-count color="accent" [notifications]="notifications.length">
+    <mat-icon>notifications</mat-icon>
+  </td-notification-count>
+</button>
+<mat-menu #notificationsMenu="matMenu">
+  <td-menu>
+    <div td-menu-header class="mat-subhead">Notifications</div>
+    <mat-nav-list dense>
+      <a mat-list-item *ngFor="let notification of notifications | slice:0:10"  [routerLink]="['home/notifications']">
+        <img mat-list-avatar src="{{notification.type}}">
+        <h4 mat-line><span class="text-wrap">{{notification.title}}</span></h4>
+        <p mat-line>{{notification.notification | truncate:100}}</p>
+      </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <a mat-button color="accent" td-menu-footer [routerLink]="['home/notifications']">
+      All Notifications
+    </a>
+  </td-menu>
+</mat-menu>
+<a mat-icon-button buttonDisableFix mat-tooltip="Docs" href="https://teradata.github.io/covalent/"
+   target="_blank">
+  <mat-icon>chrome_reader_mode</mat-icon>
+</a>
+
+<button mat-icon-button [mat-menu-trigger-for]="posXMenu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu x-position="before" #posXMenu="matMenu" class="before">
+  <button mat-menu-item> Refresh</button>
+  <button mat-menu-item> Settings</button>
+  <button mat-menu-item> Help</button>
+  <button mat-menu-item (click)="signout()"> Sign Out</button>
+</mat-menu>

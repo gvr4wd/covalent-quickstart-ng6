@@ -1,0 +1,23 @@
+<div toolbar-buttons layout="row" layout-align="start center" flex>
+    <h3 mat-dialog-title="">{{title}}</h3>
+</div>
+
+<mat-dialog-content>
+
+    <form name="objectiveForm">
+        <div layout="row" layout-margin>
+            <ng2-completer-md [dataService]="dataRemote" [minSearchLength]="3"
+                              [maxChars]="40" [placeholder]="'User - type to search'" [matchClass]="'match'"
+                              (selected)="onUserSelected($event)" name="user"
+                              flex>
+            </ng2-completer-md>
+        </div>
+    </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <div flex></div>
+    <button mat-raised-button color="accent" (click)="save()">Save</button>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
