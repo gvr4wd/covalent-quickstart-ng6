@@ -65,6 +65,8 @@ import { RoleSelectModalComponent } from './role-select-modal/role-select-modal.
 import { HasAuthorityDirective } from './has-authority.directive';
 import { GroupMembersListComponent } from './group-members-list/group-members-list.component';
 import { GroupOwnerListComponent } from './group-owner-list/group-owner-list.component';
+import { CovalentHttpModule } from '@covalent/http';
+import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 
 const SHARED_COMPONENTS = [
   ChartComponent,

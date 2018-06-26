@@ -20,7 +20,9 @@
     </mat-nav-list>
   </td-navigation-drawer>
   <td-layout-nav #navList navigationRoute="/">
-
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
     <nav-menu td-toolbar-content layout="row" layout-align="center center" flex></nav-menu>
 
     <router-outlet></router-outlet>
