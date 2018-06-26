@@ -1,9 +1,17 @@
+.mat-fab-bottom-right {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
 .mat-icon-ux {
-    width: 100px;
+    width: 165px;
 }
 .icon {
   font-size: 48px;
 }
-.chart-height {
-  height: 300px;
+// Chart font size
+:host /deep/ {
+    .tick text {
+        font-size: 14px;
+    }
 }

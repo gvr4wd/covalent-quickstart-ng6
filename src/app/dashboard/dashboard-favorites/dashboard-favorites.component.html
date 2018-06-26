@@ -1,0 +1,23 @@
+<mat-card id="dashboard-favorites-card" class="push-top">
+    <mat-card-title>Favorites</mat-card-title>
+    <mat-card-subtitle>Your favorite projects</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-nav-list class="will-load favorite-list">
+        <ng-template tdLoading="favorites.load">
+            <ng-template let-item let-last="last" ngFor [ngForOf]="products">
+                <mat-list-item layout-align="row" [routerLink]="['/product']">
+                    <mat-icon mat-list-avatar>{{item.icon}}</mat-icon>
+                    <h3 mat-line> {{item.name}} </h3>
+                    <p mat-line> {{item.description}} </p>
+                </mat-list-item>
+                <mat-divider *ngIf="!last" mat-inset></mat-divider>
+            </ng-template>
+        </ng-template>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <a mat-button color="accent" class="text-upper" [routerLink]="['/product']">
+            <span>View More</span>
+        </a>
+    </mat-card-actions>
+</mat-card>

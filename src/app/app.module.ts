@@ -37,11 +37,46 @@ import { ComponentsModule } from '../components/components.module';
 import { AuthService, LoadingService, NotificationsService, TdLayoutService, UsersService } from '../services';
 import { APP_CONFIG, AppConfig } from './app.config';
 import { LOG_LOGGER_PROVIDERS, Logger } from '../shared/logger';
-import { CovalentMessageModule } from '@covalent/core';
+import { CovalentMessageModule, CovalentStepsModule } from '@covalent/core';
+import { DashboardFavoritesComponent } from './dashboard/dashboard-favorites/dashboard-favorites.component';
+import { ProjectPagesViewedComponent } from './dashboard/project-pages-viewed/project-pages-viewed.component';
+import { DashboardAlertsComponent } from './dashboard/dashboard-alerts/dashboard-alerts.component';
+import { ProjectDiskUsageComponent } from './dashboard/project-disk-usage/project-disk-usage.component';
+import { UserActivitiesComponent } from './dashboard/user-activities/user-activities.component';
+import { ProjectUsersComponent } from './dashboard/project-users/project-users.component';
+import { ProjectStatusComponent } from './dashboard/project-status/project-status.component';
+import { UsersFormComponent } from './users/form/form.component';
+import { LogsComponent } from './logs/logs.component';
+import { FormComponent } from './form/form.component';
+import {
+  MatAutocompleteModule,
+  MatButtonToggleModule,
+  MatCheckboxModule, MatChipsModule, MatDialogModule,
+  MatGridListModule, MatMenuModule, MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule, MatRippleModule,
+  MatSelectModule, MatSidenavModule, MatSliderModule,
+  MatSlideToggleModule, MatSnackBarModule, MatTabsModule, MatTooltipModule
+} from '@angular/material';
+import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
 ];
+
+
+export function highchartsFactory() {
+  var hc = require('highcharts');
+  var hcm = require('highcharts/highcharts-more');
+  var exp = require('highcharts/modules/exporting');
+  var sg = require('highcharts/modules/solid-gauge');
+
+  hcm(hc);
+  exp(hc);
+  sg(hc);
+  return hc;
+}
 
 export function getAPI(): string {
   return MOCK_API;
@@ -53,6 +88,18 @@ export function getAPI(): string {
     MainComponent,
     LoginComponent,
     DashboardComponent,
+    UsersFormComponent,
+    LogsComponent,
+    FormComponent,
+    LoginComponent,
+    ProjectStatusComponent,
+    ProjectUsersComponent,
+    ProjectDiskUsageComponent,
+    UserActivitiesComponent,
+    DashboardAlertsComponent,
+    ProjectPagesViewedComponent,
+    DashboardFavoritesComponent,
+
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     // angular modules
@@ -62,14 +109,33 @@ export function getAPI(): string {
     FormsModule,
     HttpClientModule,
     HttpModule,
-    // material modules
+
+    /** Material Modules */
     MatButtonModule,
-    MatCardModule,
-    MatIconModule,
     MatListModule,
-    MatDividerModule,
+    MatIconModule,
+    MatCardModule,
+    MatMenuModule,
     MatInputModule,
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSnackBarModule,
     MatToolbarModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatAutocompleteModule,
+    MatSliderModule,
+    MatProgressBarModule,
+    MatChipsModule,
+    MatGridListModule,
+    MatRippleModule,
+
     // covalent modules
     CovalentCommonModule,
     CovalentLayoutModule,
@@ -81,8 +147,10 @@ export function getAPI(): string {
       }],
     }),
     CovalentMessageModule,
+    CovalentStepsModule,
     // external modules
     NgxChartsModule,
+    ChartModule,
 
     ComponentsModule,
 
@@ -105,6 +173,11 @@ export function getAPI(): string {
     // Logger
     Logger,
     LOG_LOGGER_PROVIDERS,
+
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    }
   ], // additional providers needed for this module
   entryComponents: [ ],
   bootstrap: [ AppComponent ],

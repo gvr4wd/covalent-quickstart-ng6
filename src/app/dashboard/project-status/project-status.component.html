@@ -1,0 +1,84 @@
+<mat-card>
+    <mat-card-title>Project Status</mat-card-title>
+    <mat-card-subtitle>sprint stats for current sprint</mat-card-subtitle>
+    <mat-card-content>
+        <mat-tab-group mat-stretch-tabs>
+            <mat-tab>
+                <ng-template mat-tab-label>JIRA Tickets</ng-template>
+                <ngx-charts-gauge
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="data"
+                    [min]="0"
+                    [max]="100"
+                    [angleSpan]="240"
+                    [startAngle]="-120"
+                    [units]="'JIRA Tickets'"
+                    [bigSegments]="10"
+                    [smallSegments]="5"
+                    (select)="onSelect($event)">
+                </ngx-charts-gauge>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>Sprint Completion Status</ng-template>
+                <chart [options]="options"></chart>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>1 WEEK</ng-template>
+                <div style="height:250px;">
+                    <ngx-charts-bar-horizontal-stacked
+                        [scheme]="colorScheme"
+                        [results]="multi"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [xAxisTickFormatting]="axisDigits">
+                    </ngx-charts-bar-horizontal-stacked>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>1 MONTH</ng-template>
+                <div style="height:250px;">
+                    <ngx-charts-bar-vertical-2d
+                        [scheme]="colorScheme"
+                        [results]="multi"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        [yAxisTickFormatting]="axisDigits"
+                        [barPadding]="2"
+                        [groupPadding]="8">
+                    </ngx-charts-bar-vertical-2d>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>1 YEAR</ng-template>
+                <div style="height:250px;">
+                    <ngx-charts-line-chart
+                        [scheme]="colorScheme"
+                        [results]="multi"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        [autoScale]="autoScale"
+                        [yAxisTickFormatting]="axisDigits">
+                    </ngx-charts-line-chart>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

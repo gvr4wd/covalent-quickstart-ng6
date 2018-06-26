@@ -135,6 +135,11 @@ const SHARED_COMPONENTS = [
     CovalentMarkdownModule,
     CovalentDynamicFormsModule,
     CovalentMessageModule,
+    CovalentHttpModule.forRoot({
+      interceptors: [{
+        interceptor: RequestInterceptor, paths: ['**'],
+      }],
+    }),
 
     Ng2CompleterModule,
   ],

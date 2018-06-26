@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-title>Alerts</mat-card-title>
+    <mat-card-subtitle>Items requiring your attention</mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-list class="will-load alert-list">
+        <ng-template tdLoading="alerts.load">
+            <ng-template let-item let-last="last" ngFor [ngForOf]="alerts">
+                <mat-list-item layout-align="row">
+                    <mat-icon matListAvatar class="bgc-amber-800">{{item.icon}}</mat-icon>
+                    <h3 mat-line> {{item.description}} </h3>
+                    <p mat-line> {{item.name}} </p>
+                </mat-list-item>
+                <mat-divider *ngIf="!last" mat-inset></mat-divider>
+            </ng-template>
+        </ng-template>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+        <a mat-button color="accent" class="text-upper" [routerLink]="['/logs']">
+            <span>View More</span>
+        </a>
+    </mat-card-actions>
+</mat-card>
